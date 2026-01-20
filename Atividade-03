@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+
+
+namespace Atv03
+{
+    public class Funcionario
+    {
+        public string Nome {get; set;}
+        public double Salario {get; set;}
+
+        public virtual double CalcularBonificacao()
+        {
+            return Salario * 0.1;
+        }
+    }
+
+    public class Gerente:Funcionario
+    {
+        public override double CalcularBonificacao()
+        {
+            return base.CalcularBonificacao() + 500 + (Salario * 0.1);
+        }
+    }
+
+    public class Estagiario:Funcionario
+    {
+        public override double CalcularBonificacao()
+        {
+            return 100.00;
+        }
+    }
+
+    class Program
+    {
+        public static void Main()
+        {
+            Console.WriteLine("============ Sistema de RH - Atividade 03============\n");
+
+            List<Funcionario> folhaDePag = new List<Funcionario>();
+
+            Funcionario f1 = new Funcionario { Nome = "Cefras(Padrao)", Salario = 1518.00 };
+            Gerente g1 = new Gerente { Nome = "Andre(Gerente)", Salario = 2518.00 };
+            Estagiario e1 = new Estagiario { Nome = "Murilo(Estagiario)", Salario = 800.00 };
+
+            folhaDePag.Add(f1);
+            folhaDePag.Add(g1);
+            folhaDePag.Add(e1);
+
+            double totalBonificacao = 0;
+            int numero = 0;
+
+            foreach (var funcionario in folhaDePag)
+            {
+                double bonus = funcionario.CalcularBonificacao();
+                totalBonificacao += bonus;
+                numero ++;
+
+                Console.WriteLine($"------------ Bonus {numero:D2} ------------");
+                Console.WriteLine($"Funcionario: {funcionario.Nome}");
+                Console.WriteLine($"Salario base: R${funcionario.Salario:F2}");
+                Console.WriteLine($"Bonus calculado: R${bonus:F2}");
+                Console.WriteLine("----------------------------------");
+                Console.WriteLine($"Total pago em bonus: R${totalBonificacao:F2}");
+                Console.WriteLine("----------------------------------");
+            }
+
+            Console.WriteLine("\nPressione qualquer tecla para encerrar...");
+            Console.ReadKey();
+        }
+    }
+}

@@ -1,0 +1,80 @@
+using System;
+
+namespace Atv02
+{
+    public class ContaBancaria
+    {
+        public string NumeroConta {get; private set;}
+        public string Titular {get; private set;}
+        public double Saldo {get; private set;}
+
+        public ContaBancaria(string numero, string titular)
+        {
+            this.NumeroConta = numero;
+            this.Titular = titular;
+            this.Saldo = 0.0;
+        }
+
+        public void Deposito(double valor)
+        {
+            if (valor <= 1)
+            {
+                Console.WriteLine("[Erro] Nao e possivel fazer um deposito de valor menor que R$1,00.");
+            }
+
+            else
+            {
+                Saldo += valor;
+                Console.WriteLine($"[Sucesso] O deposito no valor de R${valor:F2} foi realizado com sucesso na conta de {Titular}.");
+            }
+        }
+
+        public void Saque(double valor)
+        {
+            if (valor < Saldo)
+            {
+                Saldo -= valor;
+                Console.WriteLine($"[Sucesso] O saque no valor de R${valor:F2} foi realizado com sucesso da conta de {Titular}.");
+            }
+            
+            else
+            {
+                Console.WriteLine("[Erro] Nao foi possivel realizar o saque, pois o valor excede o disponivel na conta.");
+            }
+        }
+
+        public void exibirExtrato()
+        {
+            Console.WriteLine("----------------------Extrato----------------------");
+            Console.WriteLine($"Titular: {Titular}");
+            Console.WriteLine($"Conta: {NumeroConta}");
+            Console.WriteLine($"Saldo atual: {Saldo:F2}");
+            Console.WriteLine("---------------------------------------------------");
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("============= INICIANDO SISTEMA BANCARIO (AULA 02)=============\n");
+
+            ContaBancaria minhaConta = new ContaBancaria("41235-1", "Luiz Gustavo");
+
+            minhaConta.exibirExtrato();
+
+            minhaConta.Deposito(500.00);
+            minhaConta.Saque(200.00);
+            minhaConta.exibirExtrato();
+
+            Console.WriteLine("Tentando sacar valor maior que o saldo...");
+            minhaConta.Saque(1000.00);
+
+            //minhaConta.Saldo = 100000000.00;
+            minhaConta.exibirExtrato();
+
+            Console.WriteLine("\nPressiona qualquer tecla para encerrar...");
+            Console.ReadKey();
+        }
+    }
+}
