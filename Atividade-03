@@ -6,8 +6,8 @@ namespace Atv03
 {
     public class Funcionario
     {
-        public string Nome {get; set;}
-        public double Salario {get; set;}
+        public string Nome { get; set; }
+        public double Salario { get; set; }
 
         public virtual double CalcularBonificacao()
         {
@@ -15,7 +15,7 @@ namespace Atv03
         }
     }
 
-    public class Gerente:Funcionario
+    public class Gerente : Funcionario
     {
         public override double CalcularBonificacao()
         {
@@ -23,7 +23,7 @@ namespace Atv03
         }
     }
 
-    public class Estagiario:Funcionario
+    public class Estagiario : Funcionario
     {
         public override double CalcularBonificacao()
         {
@@ -56,12 +56,12 @@ namespace Atv03
                 totalBonificacao += bonus;
                 numero ++;
 
-                Console.WriteLine($"------------ Bonus {numero:D2} ------------");
-                Console.WriteLine($"Funcionario: {funcionario.Nome}");
-                Console.WriteLine($"Salario base: R${funcionario.Salario:F2}");
-                Console.WriteLine($"Bonus calculado: R${bonus:F2}");
+                Console.WriteLine($"------------ Bonus { numero:D2 } ------------");
+                Console.WriteLine($"Funcionario: { funcionario.Nome }");
+                Console.WriteLine($"Salario base: R${ funcionario.Salario:F2 }");
+                Console.WriteLine($"Bonus calculado: R${ bonus:F2 }");
                 Console.WriteLine("----------------------------------");
-                Console.WriteLine($"Total pago em bonus: R${totalBonificacao:F2}");
+                Console.WriteLine($"Total pago em bonus: R${ totalBonificacao:F2 }");
                 Console.WriteLine("----------------------------------");
             }
 

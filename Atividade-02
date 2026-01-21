@@ -4,18 +4,18 @@ namespace Atv02
 {
     public class ContaBancaria
     {
-        public string NumeroConta {get; private set;}
-        public string Titular {get; private set;}
-        public double Saldo {get; private set;}
+        public string NumeroConta { get; private set; }
+        public string Titular { get; private set; }
+        public double Saldo { get; private set; }
 
-        public ContaBancaria(string numero, string titular)
+        public ContaBancaria( string numero, string titular )
         {
             this.NumeroConta = numero;
             this.Titular = titular;
             this.Saldo = 0.0;
         }
 
-        public void Deposito(double valor)
+        public void Deposito( double valor )
         {
             if (valor <= 1)
             {
@@ -25,16 +25,16 @@ namespace Atv02
             else
             {
                 Saldo += valor;
-                Console.WriteLine($"[Sucesso] O deposito no valor de R${valor:F2} foi realizado com sucesso na conta de {Titular}.");
+                Console.WriteLine($"[Sucesso] O deposito no valor de R${ valor:F2 } foi realizado com sucesso na conta de {Titular}.");
             }
         }
 
-        public void Saque(double valor)
+        public void Saque( double valor )
         {
             if (valor < Saldo)
             {
                 Saldo -= valor;
-                Console.WriteLine($"[Sucesso] O saque no valor de R${valor:F2} foi realizado com sucesso da conta de {Titular}.");
+                Console.WriteLine($"[Sucesso] O saque no valor de R${ valor:F2 } foi realizado com sucesso da conta de {Titular}.");
             }
             
             else
@@ -46,9 +46,9 @@ namespace Atv02
         public void exibirExtrato()
         {
             Console.WriteLine("----------------------Extrato----------------------");
-            Console.WriteLine($"Titular: {Titular}");
-            Console.WriteLine($"Conta: {NumeroConta}");
-            Console.WriteLine($"Saldo atual: {Saldo:F2}");
+            Console.WriteLine($"Titular: { Titular }");
+            Console.WriteLine($"Conta: { NumeroConta }");
+            Console.WriteLine($"Saldo atual: { Saldo:F2 }");
             Console.WriteLine("---------------------------------------------------");
         }
     }
