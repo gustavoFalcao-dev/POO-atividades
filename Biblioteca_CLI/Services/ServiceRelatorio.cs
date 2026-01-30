@@ -8,11 +8,9 @@ public class ServiceRelatorio
 
     public ServiceRelatorio( RepoEmprestimo empretimo) => _emprestimo = emprestimo;
 
-    public MostrarAtraso()
+    public MostrarAtrasados()
     {
-        foreach ( var e in _emprestimo.ObterAtrasados())
-        {
-            Console.WriteLine( $"{ e.Livro.Titulo } - { e.Cliente.Nome }" );
-        }
+        var atrasados = _emprestimo.ObterAtrasados().Select( e => new { e.Livro.Titulo, e.Cliente.Nome }).ToList();
+        atrasados.foreach( e => Console.WriteLine( $"{e.Titulo} - {e.Nome}" ));
     }
 }

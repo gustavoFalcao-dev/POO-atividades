@@ -3,7 +3,7 @@ using Biblioteca_CLI.Repositories.Base;
 
 namespace Biblioteca_CLI.Repositories;
 
-public class RepoEmrpestimo : BaseRepository<Emprestimo>
+public class RepoEmprestimo : BaseRepository<Emprestimo>
 {
     protected override void SetId( Emprestimo e, int id ) => e.Id = id;
     protected override int GetId( Emprestimo e)
